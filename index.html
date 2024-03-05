@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 600px;
+            overflow: hidden;
+        }
+
+        .slider-image {
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .slider-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <img src="/Pictures/image.jpg" alt="Slider Image" class="slider-image" id="sliderImage">
+
+        <div class="slider-buttons">
+            <button class="slider-button" onclick="prevImage()">Previous</button>
+            <button class="slider-button" onclick="nextImage()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const imageArray = [
+            'https://thumbs.dreamstime.com/b/lonely-tree-empty-green-field-copy-space-34718407.jpg',
+            'https://slp-statics.astockcdn.net/static_assets/staging/24winter/home/curated-collections/card-2.jpg?width=580'
+        ];
+
+        let currentIndex = 0;
+        const sliderImage = document.getElementById('sliderImage');
+        sliderImage.setAttribute("src", "/Pictures/image.jpg" )
+
+        function showImage(index) {
+            sliderImage.src = imageArray[index];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imageArray.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
+            showImage(currentIndex);
+        }
+
+        // Show the first image initially
+        showImage(currentIndex);
+    </script>
+
+</body>
+</html>
